@@ -1,5 +1,5 @@
-
-project(filament-samples CXX ASM)
+cmake_minimum_required(VERSION 3.19)
+project(filament-samples C ASM)
 
 set(ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..)
 set(GENERATION_ROOT ${CMAKE_CURRENT_BINARY_DIR})
@@ -215,6 +215,7 @@ function(add_demo NAME)
     add_executable(${NAME} ${NAME}.cpp)
     target_link_libraries(${NAME} PRIVATE sample-resources filamentapp)
     target_compile_options(${NAME} PRIVATE ${COMPILER_FLAGS})
+    install(TARGETS ${NAME} RUNTIME DESTINATION bin/filament-samples)
 endfunction()
 
 if (NOT ANDROID)
@@ -257,12 +258,12 @@ if (NOT ANDROID)
     # ==============================================================================================
     # Installation
     # ==============================================================================================
-    install(TARGETS gltf_viewer RUNTIME DESTINATION bin)
-    install(TARGETS material_sandbox RUNTIME DESTINATION bin)
+    # install(TARGETS gltf_viewer RUNTIME DESTINATION bin)
+    # install(TARGETS material_sandbox RUNTIME DESTINATION bin)
 
     # Install resources
-    install(DIRECTORY ${PROJECT_BINARY_DIR}/assets/fonts DESTINATION bin/assets)
-    install(DIRECTORY ${PROJECT_BINARY_DIR}/assets/ibl/ DESTINATION bin/assets)
+    install(DIRECTORY ${PROJECT_BINARY_DIR}/assets DESTINATION bin/assets)
+    # install(DIRECTORY ${PROJECT_BINARY_DIR}/assets/ibl/ DESTINATION bin/assets)
 endif()
 
 # ==================================================================================================
@@ -301,13 +302,13 @@ endif()
 
 file(COPY ../third_party/textures DESTINATION ${PROJECT_BINARY_DIR})
 add_custom_target(textures ALL DEPENDS textures)
-add_dependencies(filament textures)
+# add_dependencies(filament textures)
 
 file(COPY ../assets DESTINATION ${PROJECT_BINARY_DIR}
         PATTERN "reference" EXCLUDE
         PATTERN "environments" EXCLUDE)
 add_custom_target(assets ALL DEPENDS assets)
-add_dependencies(filament assets)
+# add_dependencies(filament assets)
 
 add_custom_target(envs DEPENDS ${target_envmaps})
-add_dependencies(filament envs)
+# add_dependencies(filament envs)

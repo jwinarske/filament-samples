@@ -124,6 +124,8 @@ endif()
 # Test executables
 # ==================================================================================================
 
+if(NOT FILAMENT_SKIP_TESTS)
+
 set(TEST_SRCS
         test/test_algorithm.cpp
         test/test_Allocators.cpp
@@ -153,6 +155,8 @@ endif()
 add_executable(test_${TARGET} ${TEST_SRCS})
 
 target_link_libraries(test_${TARGET} PRIVATE gtest utils tsl math)
+
+endif()
 
 # ==================================================================================================
 # Benchmarks

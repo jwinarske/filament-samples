@@ -1,9 +1,25 @@
 
+# ==================================================================================================
+# Options
+# ==================================================================================================
+
+option(FILAMENT_USE_EXTERNAL_GLES3 "Experimental: Compile Filament against OpenGL ES 3" OFF)
+
+option(FILAMENT_USE_SWIFTSHADER "Compile Filament against SwiftShader" OFF)
+
+option(FILAMENT_ENABLE_LTO "Enable link-time optimizations if supported by the compiler" OFF)
+
+option(FILAMENT_SKIP_SAMPLES "Don't build samples" OFF)
+
 option(FILAMENT_SUPPORTS_XCB "Include XCB support in Linux builds" OFF)
 
 option(FILAMENT_SUPPORTS_XLIB "Include XLIB support in Linux builds" OFF)
 
 option(FILAMENT_SUPPORTS_WAYLAND "Include Wayland support in Linux builds" ON)
+
+option(FILAMENT_SKIP_SDL2 "Skip dependencues of SDL2, and SDL2" OFF)
+
+option(FILAMENT_LINUX_IS_MOBILE "Treat Linux as Mobile" OFF)
 
 set(FILAMENT_NDK_VERSION "" CACHE STRING
     "Android NDK version or version prefix to be used when building for Android."
@@ -461,7 +477,9 @@ endfunction()
 if (WEBGL)
     set(IMPORT_EXECUTABLES ${FILAMENT}/${IMPORT_EXECUTABLES_DIR}/ImportExecutables-Release.cmake)
 else()
-    set(IMPORT_EXECUTABLES ${FILAMENT}/${IMPORT_EXECUTABLES_DIR}/ImportExecutables-${CMAKE_BUILD_TYPE}.cmake)
+    if (NOT IMPORT_EXECUTABLES)
+        set(IMPORT_EXECUTABLES ${FILAMENT}/${IMPORT_EXECUTABLES_DIR}/ImportExecutables-${CMAKE_BUILD_TYPE}.cmake)
+    endif()
 endif()
 
 # ==================================================================================================

@@ -51,6 +51,8 @@ install(DIRECTORY ${PUBLIC_HDR_DIR}/math DESTINATION include)
 # ==================================================================================================
 # Tests
 # ==================================================================================================
+if (NOT FILAMENT_SKIP_TESTS)
+
 add_executable(test_${TARGET}
         tests/test_fast.cpp
         tests/test_half.cpp
@@ -60,6 +62,7 @@ add_executable(test_${TARGET}
 )
 target_link_libraries(test_${TARGET} PRIVATE math gtest)
 
+endif ()
 # ==================================================================================================
 # Benchmarks
 # ==================================================================================================

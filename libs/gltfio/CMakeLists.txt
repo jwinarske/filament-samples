@@ -82,7 +82,6 @@ foreach (input_path ${MATERIAL_SRCS})
             OUTPUT ${output_path}
             COMMAND matc ${MATC_BASE_FLAGS} -o ${output_path} ${input_path}
             MAIN_DEPENDENCY ${input_path}
-            DEPENDS matc
             COMMENT "Compiling material ${input_path} to ${output_path}"
     )
     list(APPEND RESOURCE_BINS ${output_path})
@@ -97,7 +96,7 @@ get_resgen_vars(${RESOURCE_DIR} gltfresources)
 add_custom_command(
         OUTPUT ${RESGEN_OUTPUTS}
         COMMAND resgen ${RESGEN_FLAGS} ${RESOURCE_BINS}
-        DEPENDS resgen ${RESOURCE_BINS}
+        DEPENDS ${RESOURCE_BINS}
 )
 
 if (DEFINED RESGEN_SOURCE_FLAGS)
@@ -135,7 +134,6 @@ foreach (input_path ${MATERIAL_SRCS})
             OUTPUT ${output_path}
             COMMAND matc ${MATC_BASE_FLAGS} -o ${output_path} ${input_path}
             MAIN_DEPENDENCY ${input_path}
-            DEPENDS matc
             COMMENT "Compiling material ${input_path} to ${output_path}"
     )
 endforeach()
@@ -149,7 +147,7 @@ get_resgen_vars(${LITE_DIR} gltfresources_lite)
 add_custom_command(
         OUTPUT ${RESGEN_OUTPUTS}
         COMMAND resgen ${RESGEN_FLAGS} ${RESOURCE_BINS}
-        DEPENDS resgen ${RESOURCE_BINS}
+        DEPENDS ${RESOURCE_BINS}
 )
 
 if (DEFINED RESGEN_SOURCE_FLAGS)

@@ -36,12 +36,10 @@ set(SRCS
 
 set(LIBS
         assimp
-        filament
-        filament-iblprefilter
+        libfilament.a
         sdl2
         stb
         math
-        filamat
         utils
         getopt
         imgui
@@ -49,6 +47,19 @@ set(LIBS
         image
         camutils
         geometry
+        libbackend.a
+        libbluevk.a
+        libsmol-v.a
+        libvkshaders.a
+        libfilameshio.a
+        libmeshoptimizer.a
+        libfilament-iblprefilter.a
+        libfilaflat.a
+        libfilamat.a
+        libfilabridge.a
+        libshaders.a
+        libutils.a
+        libfilament.a
 )
 
 set(MATERIAL_SRCS
@@ -92,7 +103,6 @@ foreach (mat_src ${MATERIAL_SRCS})
             OUTPUT ${output_path}
             COMMAND matc ${MATC_BASE_FLAGS} -o ${output_path} ${fullname}
             MAIN_DEPENDENCY ${mat_src}
-            DEPENDS matc
             COMMENT "Compiling material ${mat_src} to ${output_path}"
     )
     list(APPEND RESOURCE_BINS ${output_path})
@@ -103,7 +113,7 @@ get_resgen_vars(${RESOURCE_DIR} filamentapp)
 add_custom_command(
         OUTPUT ${RESGEN_OUTPUTS}
         COMMAND resgen ${RESGEN_FLAGS} ${RESOURCE_BINS}
-        DEPENDS resgen ${RESOURCE_BINS}
+        DEPENDS ${RESOURCE_BINS}
         COMMENT "Aggregating resources"
 )
 
