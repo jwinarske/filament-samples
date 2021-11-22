@@ -23,7 +23,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include <filament/Engine.h>
 #include <filament/Viewport.h>

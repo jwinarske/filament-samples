@@ -11,8 +11,8 @@
 #include "imgui_impl_opengl3.h"
 #include <stdio.h>
 #include <emscripten.h>
-#include <SDL.h>
-#include <SDL_opengles2.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_opengles2.h>
 
 // Emscripten requires to have full control over the main loop. We're going to store our SDL book-keeping variables globally.
 // Having a single function that acts as a loop prevents us to store state in the stack of said function. So we need some location for this.

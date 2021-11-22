@@ -7,8 +7,8 @@
 #include "imgui_impl_dx11.h"
 #include <d3d11.h>
 #include <stdio.h>
-#include <SDL.h>
-#include <SDL_syswm.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_syswm.h>
 
 // Data
 static ID3D11Device*            g_pd3dDevice = NULL;

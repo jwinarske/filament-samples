@@ -16,7 +16,7 @@ Initial tests:
 Code
 ====
 
-    #include <SDL.h>
+    #include <SDL2/SDL.h>
 
     int PollEvents()
     {

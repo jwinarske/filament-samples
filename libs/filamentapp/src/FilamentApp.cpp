@@ -20,10 +20,10 @@
 
 #if !defined(WIN32)
 #if defined(FILAMENT_SUPPORTS_WAYLAND)
-#    include <SDL_syswm.h>
+#    include <SDL2/SDL_syswm.h>
 #endif
 #else
-#    include <SDL_syswm.h>
+#    include <SDL2/SDL_syswm.h>
 #    include <utils/unwindows.h>
 #endif
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include <filament/Camera.h>
 #include <filament/Engine.h>

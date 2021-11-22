@@ -6,7 +6,7 @@
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_metal.h"
 #include <stdio.h>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #import <Metal/Metal.h>
 #import <QuartzCore/QuartzCore.h>
