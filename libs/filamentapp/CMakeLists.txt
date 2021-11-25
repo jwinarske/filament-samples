@@ -37,7 +37,7 @@ set(SRCS
 set(LIBS
         assimp
         libfilament.a
-        SDL2
+        sdl2
         stb
         math
         utils
