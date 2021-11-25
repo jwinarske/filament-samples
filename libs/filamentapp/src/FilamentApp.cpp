@@ -749,7 +749,18 @@ void FilamentApp::Window::fixupMouseCoordinatesForHdpi(ssize_t& x, ssize_t& y) c
 }
 
 void FilamentApp::Window::resize() {
+#if defined(FILAMENT_SUPPORTS_WAYLAND)
+        SDL_SysWMinfo wmi;
+        SDL_VERSION(&wmi.version);
+        ASSERT_POSTCONDITION(SDL_GetWindowWMInfo(mWindow, &wmi), "SDL version unsupported!");
+        if (wmi.subsystem == SDL_SYSWM_WAYLAND) {
+            mWayland.display = wmi.info.wl.display;
+            mWayland.surface = wmi.info.wl.surface;
+        }
+        void* nativeWindow = reinterpret_cast<void*>(&mWayland);
+#else
     void* nativeWindow = ::getNativeWindow(mWindow);
+#endif
 
 #if defined(__APPLE__)
 
