@@ -185,6 +185,13 @@ private:
         filament::Renderer* mRenderer = nullptr;
         filament::Engine::Backend mBackend;
 
+#if defined(FILAMENT_SUPPORTS_WAYLAND)
+        struct {
+                struct wl_display *display;             /**< Wayland display */
+                struct wl_surface *surface;             /**< Wayland surface */
+        } mWayland;
+#endif
+
         CameraManipulator* mMainCameraMan;
         CameraManipulator* mDebugCameraMan;
         filament::SwapChain* mSwapChain = nullptr;
